@@ -1,0 +1,24 @@
+Suggested input for manual testing of the initial rule set:
+
+Loan type: '7-1 ARM', Standard
+State: Florida, Texas
+Credit Score: 710, 730, 721
+Initial Interest rate: 5.0
+
+Expected results:
+When loan type is '7-1 ARM', state is Texas and credit score is 710, 721, 730
+The expected results are:
+Product NOT disqualified for all combinations.
+Final interest rate:
+710 -> 6.0
+721 -> 5.2
+730 -> 5.2
+
+Change the above data so that the loan type is Standard (all other values the same) leads to the following results:
+710 -> 5.5
+721 -> 4.7
+730 -> 4.7
+Again the product is NOT disqualified for any of these combinations.
+
+When the State is changed to Florida, the customer will be disqualified from the product but there are no other changes to the results.
+
