@@ -1,0 +1,32 @@
+{ "ActionRules" : {
+  "Qualify" : "def productQualify(state):\n\tif state.lower() == 'Florida'.lower():\n\t\treturn True\n\treturn False",
+  "Interest" : {
+    "Initial" : 5.0,
+    "RateCal" : "def rateCalculation(cs, pn):\n\tfinalRate={InitialRate}\n\tif pn == '7-1 ARM':\n\t\tfinalRate += 0.5\n\tif abs(cs) >= 720:\n\t\tfinalRate -= 0.3\n\telse:\n\t\tfinalRate += 0.5\n\treturn finalRate"
+  }
+},
+  "TestData" : {
+    "CreditScores" : [
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 699, "ExpectedRate" : 5.5},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 705.0, "ExpectedRate" : 5.5},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 710, "ExpectedRate" : 5.5},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 720, "ExpectedRate" : 4.7},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 721, "ExpectedRate" : 4.7},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : -750, "ExpectedRate" : 4.7}
+    ],
+    "Qualified" : [
+      {"LoanType" :"Standard", "Residence" : "Florida", "Credit" : 710, "ExpectedQual" : 1},
+      {"LoanType" :"Standard", "Residence" : "Florida", "Credit" : 750, "ExpectedQual" : 1},
+      {"LoanType" :"Standard", "Residence" : "Texas", "Credit" : 710, "ExpectedQual" : 0},
+      {"LoanType" :"Standard", "Residence" : "Texas", "Credit" : 750, "ExpectedQual" : 0},
+      {"LoanType" :"Standard", "Residence" : "florida", "Credit" : 710, "ExpectedQual" : 1},
+      {"LoanType" :"Standard", "Residence" : "florida", "Credit" : 750, "ExpectedQual" : 1},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 710, "ExpectedQual" : 0},
+      {"LoanType" :"Standard", "Residence" : "California", "Credit" : 750, "ExpectedQual" : 0}
+    ],
+    "LoanType" : [
+      {"LoanType" :"7-1 ARM", "Residence" : "Texas", "Credit" : 710, "ExpectedRate" : 6.0},
+      {"LoanType" :"7-1 ARM", "Residence" : "Texas", "Credit" : 750, "ExpectedRate" : 5.2}
+    ]
+  }
+}
